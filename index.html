@@ -33,15 +33,36 @@
                 raycaster="objects: .clickable"
                 emitevents="true"
                 cursor="fuse: false; rayOrigin: mouse;"
-                id="markerA"
             >
                 <a-entity
                     id="bowser-model"
-                    scale="0.04022175321355055 0.04022175321355055 0.04022175321355055"
+                    scale="0.06033262982032583 0.06033262982032583 0.06033262982032583"
+                    position="0 0 0"
+                    rotation="0 0 0"
                     animation-mixer="loop: repeat"
                     gltf-model="#animated-asset"
                     class="clickable"
                     gesture-handler
+
+                    animation__rotate="property: rotation; 
+                                       to: 0 360 0; 
+                                       loop: true; 
+                                       dur: 4200; 
+                                       easing: easeInOutSine"
+
+                    animation__float="property: position; 
+                                      dir: alternate; 
+                                      to: 0 0.25 0; 
+                                      loop: true; 
+                                      dur: 1600; 
+                                      easing: easeInOutQuad"
+
+                    animation__tilt="property: rotation; 
+                                     dir: alternate; 
+                                     to: 8 360 -8; 
+                                     loop: true; 
+                                     dur: 2100; 
+                                     easing: easeInOutCubic"
                 ></a-entity>
             </a-marker>
 
