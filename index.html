@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
+    </head>
+
+    <body style="margin: 0; overflow: hidden;">
+        <a-scene
+            vr-mode-ui="enabled: false;"
+            loading-screen="enabled: false;"
+            renderer="logarithmicDepthBuffer: true;"
+            arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+            id="scene"
+            embedded
+            gesture-detector
+        >
+            <a-assets>
+                <a-asset-item
+                    id="animated-asset"
+                    src="assets/asset.glb"
+                ></a-asset-item>
+            </a-assets>
+
+            <a-marker
+                id="animated-marker"
+                type="pattern"
+                preset="custom"
+                url="assets/marker.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="bowser-model"
+                    scale="0.06033262982032583 0.06033262982032583 0.06033262982032583"
+                    position="0 0 0"
+                    rotation="0 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#animated-asset"
+                    class="clickable"
+                    gesture-handler
+
+                    animation__rotate="property: rotation; 
+                                       to: 0 360 0; 
+                                       loop: true; 
+                                       dur: 4200; 
+                                       easing: easeInOutSine"
+
+                    animation__float="property: position; 
+                                      dir: alternate; 
+                                      to: 0 0.25 0; 
+                                      loop: true; 
+                                      dur: 1600; 
+                                      easing: easeInOutQuad"
+
+                    animation__tilt="property: rotation; 
+                                     dir: alternate; 
+                                     to: 8 360 -8; 
+                                     loop: true; 
+                                     dur: 2100; 
+                                     easing: easeInOutCubic"
+                ></a-entity>
+            </a-marker>
+
+            <a-entity camera></a-entity>
+        </a-scene>
+    </body>
+</html>
